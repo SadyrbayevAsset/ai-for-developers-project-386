@@ -24,12 +24,3 @@ Create a GitHub issue in this repo.
 ## When a skill says "fetch the relevant ticket"
 
 Read it via `gh issue view <number>`.
-
-## TODO
-
-- Install `gh` CLI or create the triage labels manually in GitHub:
-  - `needs-triage`
-  - `needs-info`
-  - `ready-for-agent`
-  - `ready-for-human`
-  - `wontfix`
