@@ -14,3 +14,62 @@ model HealthResponse {
 @route("/health")
 @get
 op health(): HealthResponse;
+
+model MeetingType {
+  id: string;
+  name: string;
+  description: string;
+  durationMinutes: int32;
+}
+
+model MeetingTypeInput {
+  name: string;
+  description: string;
+  durationMinutes: int32;
+}
+
+model Slot {
+  start: utcDateTime;
+  end: utcDateTime;
+}
+
+model Booking {
+  id: string;
+  meetingTypeId: string;
+  start: utcDateTime;
+  end: utcDateTime;
+  guestName: string;
+  guestEmail: string;
+}
+
+model BookingInput {
+  meetingTypeId: string;
+  start: utcDateTime;
+  guestName: string;
+  guestEmail: string;
+}
+
+model BookingConflictError {
+  code: "BOOKING_CONFLICT";
+  message: string;
+}
+
+@route("/meeting-types")
+interface MeetingTypes {
+  @get list(): MeetingType[];
+  @post create(@body input: MeetingTypeInput): MeetingType;
+
+  @route("/{id}/slots")
+  @get
+  listSlots(
+    @path id: string,
+    @query from: utcDateTime,
+    @query to: utcDateTime,
+  ): Slot[];
+}
+
+@route("/bookings")
+interface Bookings {
+  @get list(): Booking[];
+  @post create(@body input: BookingInput): Booking | BookingConflictError;
+}
