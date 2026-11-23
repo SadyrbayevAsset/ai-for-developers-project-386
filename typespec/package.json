@@ -1,0 +1,21 @@
+{
+  "name": "calendar-typespec",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsp compile . --emit @typespec/openapi3",
+    "lint": "tsp format --check \"**/*.tsp\"",
+    "lint:fix": "tsp format \"**/*.tsp\"",
+    "typecheck": "tsp compile . --no-emit"
+  },
+  "dependencies": {
+    "@typespec/compiler": "^0.66.0",
+    "@typespec/http": "^0.66.0",
+    "@typespec/openapi3": "^0.66.0",
+    "@typespec/rest": "^0.66.0"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.6.1"
+  }
+}

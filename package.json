@@ -1,0 +1,40 @@
+{
+  "name": "ai-for-developers-project-386",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Сервис для бронирования времени звонков",
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "install:all": "npm install && npm run install:backend && npm run install:frontend && npm run install:typespec",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:typespec": "cd typespec && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:typespec && npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:typespec": "cd typespec && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "lint": "npm run lint:backend && npm run lint:frontend && npm run lint:typespec",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:typespec": "cd typespec && npm run lint",
+    "typecheck": "npm run typecheck:backend && npm run typecheck:frontend && npm run typecheck:typespec",
+    "typecheck:backend": "cd backend && npm run typecheck",
+    "typecheck:frontend": "cd frontend && npm run typecheck",
+    "typecheck:typespec": "cd typespec && npm run typecheck",
+    "check": "npm run lint && npm run typecheck && npm run test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5",
+    "husky": "^9.1.7"
+  }
+}
