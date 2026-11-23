@@ -1,15 +1,18 @@
-import { Button } from "@/components/ui/button"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AdminPage } from "./pages/admin";
+import { BookingPage } from "./pages/booking";
+import { HomePage } from "./pages/home";
 
 function App() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-4 p-8">
-      <h1 className="text-3xl font-bold tracking-tight">Календарь звонков</h1>
-      <p className="text-muted-foreground">
-        Сервис для бронирования времени звонков
-      </p>
-      <Button>Начать</Button>
-    </main>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
