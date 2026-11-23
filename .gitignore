@@ -29,3 +29,7 @@ npm-debug.log*
 # Generated OpenAPI
 openapi.yaml
 */openapi.yaml
+
+# Playwright
+test-results/
+e2e/test-results/
