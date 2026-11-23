@@ -27,3 +27,5 @@ coverage
 .opencode
 scripts
 opencode.json
+opencode.json.example
+.env.example
