@@ -12,7 +12,7 @@ export async function registerStatic(app: FastifyInstance) {
   });
 
   app.setNotFoundHandler(async (request, reply) => {
-    if (request.method === 'GET' && !request.url.startsWith('/api')) {
+    if (request.method === 'GET' && !request.url.startsWith('/api') && !request.url.startsWith('/health') && !request.url.startsWith('/meeting-types') && !request.url.startsWith('/bookings')) {
       return reply.sendFile('index.html');
     }
     return reply.status(404).send({ error: 'Not Found' });
