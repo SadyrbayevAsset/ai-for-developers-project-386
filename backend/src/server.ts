@@ -1,6 +1,7 @@
 import fastify from 'fastify';
 import { meetingTypeRoutes } from './routes/meeting-types.js';
 import { bookingRoutes } from './routes/bookings.js';
+import { registerStatic } from './plugins/static.js';
 
 export function buildServer() {
   const app = fastify({
@@ -22,6 +23,10 @@ export function buildServer() {
 
   app.register(meetingTypeRoutes, { prefix: '/meeting-types' });
   app.register(bookingRoutes, { prefix: '/bookings' });
+
+  if (process.env.NODE_ENV === 'production') {
+    app.register(registerStatic);
+  }
 
   return app;
 }
