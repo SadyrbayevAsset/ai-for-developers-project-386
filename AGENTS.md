@@ -65,4 +65,11 @@ fix: prevent overlapping bookings
 docs: update README with setup instructions
 ```
 
+Коммиты реализации должны ссылаться на закрываемый тикет:
+
+```
+feat: book a free slot (#7)
+fix: reject overlapping bookings (#4)
+```
+
 Git-хуки запускают `npm run check` перед коммитом и проверяют формат сообщения.
