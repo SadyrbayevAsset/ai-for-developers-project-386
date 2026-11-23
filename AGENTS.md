@@ -51,6 +51,17 @@ Five canonical labels: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-f
 
 Single-context layout: `GLOSSARY.md` at the repo root and `docs/adr/` for decisions. See `docs/agents/domain.md`.
 
+## Генерируемые артефакты
+
+Следующие файлы генерируются из TypeSpec и не редактируются вручную:
+
+- `openapi/openapi.yaml` — генерируется командой `npm run generate:typespec`.
+- `frontend/src/generated/sdk.ts` — генерируется командой `npm run generate:sdk`.
+
+Общая команда генерации: `npm run generate`.
+
+CI повторяет генерацию и проверяет отсутствие изменений. Если сгенерированные файлы закоммичены, любой diff приводит к падению CI.
+
 ## Правила коммитов
 
 Все коммиты оформляются по спецификации [Conventional Commits](https://www.conventionalcommits.org/).
