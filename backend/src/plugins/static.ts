@@ -7,9 +7,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const apiPrefixes = ['/health', '/meeting-types', '/bookings', '/assets'];
 
+const staticRoot = process.env.NODE_ENV === 'production'
+  ? '/app/frontend/dist'
+  : path.join(__dirname, '../../frontend/dist');
+
 export async function registerStatic(app: FastifyInstance) {
   await app.register(fastifyStatic, {
-    root: path.join(__dirname, '../../frontend/dist'),
+    root: staticRoot,
     prefix: '/',
   });
 
