@@ -12,6 +12,9 @@ build/
 .env.local
 .env.*.local
 
+# Agent configuration with secrets
+opencode.json
+
 # IDE
 .idea/
 .vscode/

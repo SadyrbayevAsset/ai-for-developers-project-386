@@ -1,18 +1,16 @@
 # Build stage for frontend
 FROM node:22.14.0-slim AS frontend-builder
 WORKDIR /app/frontend
-RUN npm install -g npm@10.9.3
-COPY frontend/package*.json ./
-RUN npm ci
+COPY .npmrc frontend/package*.json ./
+RUN npm ci --no-audit --no-fund
 COPY frontend/ ./
 RUN npm run build
 
 # Build stage for backend
 FROM node:22.14.0-slim AS backend-builder
 WORKDIR /app/backend
-RUN npm install -g npm@10.9.3
-COPY backend/package*.json ./
-RUN npm ci
+COPY .npmrc backend/package*.json ./
+RUN npm ci --no-audit --no-fund
 COPY backend/ ./
 RUN npm run build
 
@@ -21,9 +19,8 @@ FROM node:22.14.0-slim
 WORKDIR /app
 ENV NODE_ENV=production
 
-RUN npm install -g npm@10.9.3
-COPY backend/package*.json ./backend/
-RUN cd backend && npm ci --omit=dev
+COPY .npmrc backend/package*.json ./backend/
+RUN cd backend && npm ci --omit=dev --no-audit --no-fund
 
 COPY --from=backend-builder /app/backend/dist ./backend/dist
 COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
